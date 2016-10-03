@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.jogajunto.TelaFiltro">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imagemLogo"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/iconjj"
+
+        />
+
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imagemLogo"
+        >
+
+        <RelativeLayout
+            android:id="@+id/container"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:soundEffectsEnabled="true"
+            android:scrollbars="horizontal"
+            >
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TIPO DE QUADRAS: "
+                android:textSize="20dp"
+                android:id="@+id/textoTipo"
+                android:layout_marginTop="17dp"
+
+
+                />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner1"
+                android:layout_below="@+id/textoTipo"
+                android:spinnerMode="dropdown"
+                android:layout_marginTop="15dp"
+
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textoValor"
+                android:text="VALOR: "
+                android:layout_below="@+id/spinner1"
+                android:textSize="20dp"
+                android:layout_marginTop="15dp"
+
+                />
+
+            <EditText
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editor1"
+                android:layout_below="@+id/textoValor"
+                android:layout_marginTop="15dp"
+                android:hint="Min"
+                android:inputType="numberDecimal"
+
+                />
+
+            <EditText
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editor2"
+                android:layout_below="@+id/textoValor"
+                android:layout_toRightOf="@+id/editor1"
+                android:layout_marginTop="15dp"
+                android:hint="Max"
+                android:inputType="numberDecimal"
+
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textoOpicionais"
+                android:text="OPICIONAIS: "
+                android:layout_below="@+id/editor1"
+                android:textSize="20dp"
+                android:layout_marginTop="15dp"
+
+                />
+
+            <CheckBox
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkEstacionamento"
+                android:layout_below="@+id/textoOpicionais"
+                android:text="Estacionamento"
+                android:layout_marginTop="20dp"
+
+                />
+
+            <CheckBox
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkVestiario"
+                android:layout_below="@+id/checkEstacionamento"
+                android:layout_marginTop="10dp"
+                android:text="Vestiário"
+
+                />
+
+            <CheckBox
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkLanchonete"
+                android:layout_below="@+id/textoOpicionais"
+                android:layout_toRightOf="@+id/checkEstacionamento"
+                android:layout_marginTop="20dp"
+                android:text="Lanchonete"
+
+                />
+
+            <CheckBox
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkChurrasqueira"
+                android:layout_below="@+id/checkLanchonete"
+                android:layout_toRightOf="@+id/checkVestiario"
+                android:layout_marginTop="10dp"
+                android:text="Churrasqueira"
+
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textoErro"
+                android:layout_centerInParent="true"
+
+
+                />
+        </RelativeLayout>
+
+
+
+
+    </ScrollView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/botaoFiltrar"
+        android:text="Filtrar"
+        android:onClick="filtarConteudo"
+        android:layout_below="@+id/scroll"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>
