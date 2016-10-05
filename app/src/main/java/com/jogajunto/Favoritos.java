@@ -32,6 +32,7 @@ public class Favoritos extends AppCompatActivity {
             {
                 Intent informations = new Intent(Favoritos.this, TelaQuadra.class);
                 startActivity(informations);
+                Favoritos.this.finish();
             }
         });
 
