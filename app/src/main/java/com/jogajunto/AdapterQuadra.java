@@ -8,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -41,7 +40,7 @@ public class AdapterQuadra extends BaseAdapter {
     public View getView(int position, View view, ViewGroup viewGroup) {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        view = inflater.inflate(R.layout.list_quadra_item, null);
+        view = inflater.inflate(R.layout.list_item_favoritos, null);
 
         if(view != null){
             ImageView imgQuadra = (ImageView) view.findViewById(R.id.imageView);

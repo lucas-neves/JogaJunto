@@ -78,6 +78,14 @@ public class MainActivity extends AppCompatActivity
                 image.changeByButton();
             }
         });
+
+        final ImageButton info = (ImageButton) findViewById(R.id.btnInfo);
+        info.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            Intent informations = new Intent(MainActivity.this, TelaQuadra.class);
+            startActivity(informations);
+            }
+        });
     }
 
     @Override
@@ -121,7 +129,8 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-
+            Intent fav = new Intent(this, Favoritos.class);
+            startActivity(fav);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {

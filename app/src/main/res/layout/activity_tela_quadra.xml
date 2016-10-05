@@ -10,10 +10,33 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.jogajunto.TelaQuadra">
 
-    <ListView
-        android:id="@+id/List"
+    <TextView
+        android:text="Tela q o Jeff vai fazer
+        -foto da quadra escolhida
+        -informações do local
+        -escolher dia/hora
+        -btn mapa
+        -btn reservar
+        -outros..."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        >
-    </ListView>
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="128dp"
+        android:textSize="20dp"
+        android:id="@+id/textView2" />
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/maps"
+        android:scaleType="fitXY"
+        android:background="@null"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="29dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/btnMaps"/>
 </RelativeLayout>
