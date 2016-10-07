@@ -31,13 +31,14 @@ import android.widget.ImageButton;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    ImageButton yes;
+    ImageButton no;
+    ImageButton info;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -64,28 +65,24 @@ public class MainActivity extends AppCompatActivity
         final PlayAreaView image = new PlayAreaView(this);
         frame.addView(image);
 
-
-        final ImageButton yes = (ImageButton) findViewById(R.id.btnYes);
+        info = (ImageButton) findViewById(R.id.btnInfo);
+        yes = (ImageButton) findViewById(R.id.btnYes);
         yes.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 image.changeByButton();
             }
         });
-
-        final ImageButton no = (ImageButton) findViewById(R.id.btnNo);
+        no = (ImageButton) findViewById(R.id.btnNo);
         no.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 image.changeByButton();
             }
         });
+    }
 
-        final ImageButton info = (ImageButton) findViewById(R.id.btnInfo);
-        info.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            Intent informations = new Intent(MainActivity.this, TelaQuadra.class);
-            startActivity(informations);
-            }
-        });
+    public void openInformations(View v){
+        Intent informations = new Intent(MainActivity.this, TelaQuadra.class);
+        startActivity(informations);
     }
 
     @Override

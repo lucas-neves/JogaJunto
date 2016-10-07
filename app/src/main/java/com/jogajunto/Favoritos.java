@@ -13,12 +13,14 @@ import java.util.ArrayList;
 
 public class Favoritos extends AppCompatActivity {
 
+    private ListView list;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favoritos);
 
-        ListView list = (ListView) findViewById(R.id.List);
+        list = (ListView) findViewById(R.id.List);
         ArrayList<Quadra> quadras = new ArrayList<Quadra>();
         for (int i = 0; i < 10; i++)
             quadras.add(new Quadra());
@@ -51,7 +53,6 @@ public class Favoritos extends AppCompatActivity {
 //            }
 //        });
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -1,16 +1,12 @@
 <resources>
     <string name="app_name">Joga Junto</string>
 
-    <!-- Strings related to login -->
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Joga Junto</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Abrir aba de navegação</string>
+    <string name="navigation_drawer_close">Fechar aba de navegação</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Configurações</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_maps">Map</string>
 </resources>

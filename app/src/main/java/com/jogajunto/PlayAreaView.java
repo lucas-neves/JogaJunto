@@ -42,8 +42,8 @@ public class PlayAreaView extends View {
                 onAnimateStep();
             }
         });
-//        if(getX()< -displaymetrics.widthPixels/2 || getX()> displaymetrics.widthPixels/2){
-        if(getX()< 300){
+
+        if(dx < -100 || dx > getRight()+100){
             changePlace();
         }
     }
@@ -80,7 +80,7 @@ public class PlayAreaView extends View {
                 indiceQuadra=1;
                 break;
         }
-        //this.onResetLocation();
+        this.onResetLocation();
     }
 
     public void changeByButton(){

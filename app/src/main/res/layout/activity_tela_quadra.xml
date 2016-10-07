@@ -26,6 +26,8 @@
         android:textSize="20dp"
         android:id="@+id/textView2" />
 
+    <include layout="@layout/activity_maps" />
+
     <ImageButton
         android:layout_width="80dp"
         android:layout_height="80dp"
@@ -38,5 +40,6 @@
         android:layout_marginRight="29dp"
         android:layout_marginEnd="29dp"
         android:layout_marginTop="30dp"
-        android:id="@+id/btnMaps"/>
+        android:id="@+id/btnMaps"
+        android:onClick=""/>
 </RelativeLayout>
