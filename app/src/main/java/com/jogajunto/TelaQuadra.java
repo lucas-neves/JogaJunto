@@ -12,8 +12,9 @@ import android.widget.ImageButton;
 
 public class TelaQuadra extends AppCompatActivity {
 
-    ImageButton btnMaps;
+    private ImageButton btnMaps;
     private FragmentManager fragmentManager;
+    private MapsFragment mapa = new MapsFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,28 +25,30 @@ public class TelaQuadra extends AppCompatActivity {
         btnMaps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showFragment(new MapsFragment(), "Local da quadra");
+                showFragment(mapa, "Local da quadra");
             }
         });
         fragmentManager = getSupportFragmentManager();
-
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.add(R.id.content_maps, new MapsFragment(), "MapsFragment");
-        transaction.commitAllowingStateLoss();
     }
 
     private void showFragment(Fragment fragment, String nome){
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.content_maps, fragment, nome);
+        transaction.add(R.id.content_maps, mapa, "MapsFragment");
+        transaction.commitAllowingStateLoss();
+        btnMaps.setVisibility(View.INVISIBLE);
+    }
 
-        if (fragment.isHidden()) {
-            transaction.show(fragment);
-            Log.d("hidden","Show");
-        } else {
-            transaction.hide(fragment);
-            Log.d("Shown","Hide");
+    @Override
+    public void onBackPressed() {
+        if(mapa.isVisible()){
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.remove(mapa);
+            transaction.commit();
+            btnMaps.setVisibility(View.VISIBLE);
+        }else{
+            Intent fav = new Intent(this, Favoritos.class);
+            startActivity(fav);
+            this.finish();
         }
-
-        transaction.commit();
     }
 }

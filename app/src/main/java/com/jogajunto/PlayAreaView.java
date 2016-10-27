@@ -43,9 +43,8 @@ public class PlayAreaView extends View {
             }
         });
 
-        if(dx < -100 || dx > getRight()+100){
+        if(dx < getLeft()-100 || dx > getRight()+100)
             changePlace();
-        }
     }
 
     public void changePlace(){
@@ -80,7 +79,6 @@ public class PlayAreaView extends View {
                 indiceQuadra=1;
                 break;
         }
-        this.onResetLocation();
     }
 
     public void changeByButton(){
@@ -108,6 +106,10 @@ public class PlayAreaView extends View {
                 }
             });
         }
+
+        if(curDx < getLeft()-100 || curDx > getRight()+100)
+            onResetLocation();
+
     }
 
     public void onMove(float dx, float dy) {

@@ -1,48 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/imageView" />
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/imageView"/>
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginLeft="10dp"
             android:text="Large Text"
             android:id="@+id/textViewNome" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_marginLeft="10dp"
             android:text="Small Text"
             android:id="@+id/textViewDescricao" />
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="25dp"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:foregroundGravity="right|center">
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/imageMaps"
-                android:layout_gravity="left|top" />
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/imageMaps"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:maxLines="1"
+                android:layout_weight="1"
+                android:text="8.9km"
+                android:id="@+id/textViewDistancia"/>
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/imageRating"
-                android:layout_gravity="center_horizontal|top" />
-        </FrameLayout>
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/imageRating"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_weight="1"
+                android:text="4.5"
+                android:id="@+id/textViewRating"/>
+        </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>

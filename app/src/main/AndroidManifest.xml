@@ -63,7 +63,7 @@
             android:theme="@style/AppTheme.Dark" />
         <activity android:name=".Favoritos" />
         <activity android:name=".TelaFiltro" />
-        <activity android:name=".TelaQuadra"></activity>
+        <activity android:name=".TelaQuadra" />
     </application>
 
 </manifest>
