@@ -6,6 +6,13 @@
     <string name="navigation_drawer_open">Abrir aba de navegação</string>
     <string name="navigation_drawer_close">Fechar aba de navegação</string>
 
+    <string name="partidas">Partidas</string>
+    <string name="favoritos">Favoritos</string>
+    <string name="galeria">Fotografar/Galeria</string>
+    <string name="configuracao">Configuração</string>
+    <string name="compartilhar">Compartilhar</string>
+    <string name="enviar">Enviar</string>
+
     <string name="action_settings">Configurações</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_maps">Map</string>

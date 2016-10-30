@@ -41,11 +41,9 @@ public class TelaFiltro extends AppCompatActivity {
         List<String> list = new ArrayList<String>();
         list.add("Selecione uma opção");
         list.add("Futebol Society");
-        list.add("Basquete");
-        list.add("Vôlei");
+        list.add("Futebol de salão");
+        list.add("Futebol de campo");
         list.add("Quadras Poliesportivas");
-        list.add("Futsal");
-
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>
                 (this, android.R.layout.simple_spinner_item,list);

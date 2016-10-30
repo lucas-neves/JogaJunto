@@ -59,7 +59,7 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
             mMap.setMyLocationEnabled(true);
 
         }catch (SecurityException ex){
-            Log.e(TAG, "Error", ex);
+            Log.e(TAG, "Error provider map", ex);
         }
 
 

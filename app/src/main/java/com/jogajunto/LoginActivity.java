@@ -1,7 +1,9 @@
 package com.jogajunto;
 
 import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -11,6 +13,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.jogajunto.modelo.Postagem;
+import com.jogajunto.tasks.ReceberPostagemTask;
+import com.jogajunto.tasks.ReceberPostagensTask;
+
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.Bind;
@@ -47,9 +55,21 @@ public class LoginActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_SIGNUP);
             }
         });
+
+        //para garantir que a internet será acessada
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
     }
 
     public void login() {
+
+        ReceberPostagensTask postagensTask = new ReceberPostagensTask();
+        List<Postagem> postagems = postagensTask.doInBackground(null);
+
+        ReceberPostagemTask postagemTask = new ReceberPostagemTask();
+        Postagem postagem = postagemTask.doInBackground(33);
+
         Log.d(TAG, "Login");
 
         if (!validate()) {

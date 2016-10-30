@@ -9,8 +9,8 @@ public class Quadra {
     public String nome = "Rochdalão";
     public String descricao = "Osasco Fiao";
     public int icon = R.drawable.quadra1;
-    public int icon2 = R.drawable.maps;
-    public int icon1 = R.drawable.rating;
+    public int icon1 = R.drawable.maps;
+    public int icon2 = R.drawable.rating;
 
 
 
