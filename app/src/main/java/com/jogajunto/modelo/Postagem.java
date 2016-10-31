@@ -30,11 +30,11 @@ public class Quadra {
     @SerializedName("Email")
     private String Tipo_Quadra;
 
-    public Jogador(){
+    public Quadra(){
 
     }
 
-    public Jogador(String nome, String apelido, String _email, String _senha, String genero){
+    public Quadra(String nome, String apelido, String _email, String _senha, String genero){
         this.Email = _email;
         this.Senha = _senha;
         this.Nome = nome;
@@ -45,7 +45,7 @@ public class Quadra {
         Id = 0;
     }
 
-    public Jogador(String _email, String _senha){
+    public Quadra(String _email, String _senha){
         Email = _email;
         Senha = _senha;
     }
