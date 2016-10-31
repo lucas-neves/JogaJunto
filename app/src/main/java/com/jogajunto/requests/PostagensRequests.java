@@ -10,7 +10,7 @@ import feign.RequestLine;
 /**
  * Created by aluno on 28/10/2016.
  */
-public interface PostagensRequests {
+public interface QuadrasRequests {
 
     @RequestLine("GET /posts")
     List<Quadra> receberQuadras();
