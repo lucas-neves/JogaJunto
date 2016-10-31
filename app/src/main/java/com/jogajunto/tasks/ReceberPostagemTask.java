@@ -2,8 +2,8 @@ package com.jogajunto.tasks;
 
 import android.os.AsyncTask;
 
-import com.jogajunto.modelo.Postagem;
-import com.jogajunto.requests.PostagensRequests;
+import com.jogajunto.modelo.Quadra;
+import com.jogajunto.requests.QuadraRequests;
 
 import java.util.List;
 
@@ -13,20 +13,22 @@ import feign.gson.GsonDecoder;
 /**
  * Created by aluno on 28/10/2016.
  */
-public class ReceberPostagemTask extends AsyncTask<Integer, Void, Postagem>{
+public class ReceberPostagemTask extends AsyncTask<Integer, Void, Quadra>{
 
     @Override
-    public Postagem doInBackground(Integer... params) {
+    public Quadra doInBackground(Integer... params) {
 
-        PostagensRequests requests = Feign.builder()
+        QuadraRequests requests = Feign.builder()
                 .decoder(new GsonDecoder())
-                .target(PostagensRequests.class, "https://jsonplaceholder.typicode.com");
+                .target(QuadraRequests.class, "http://jogajunto.azurewebsites.net/api/");
 
-        Postagem postagem = requests.receberPostagem(params[0]);
+        //List postagem = requests.receberQuadras(params[0]);
+        
+        Quadra quadra = requests.receberQuadra(params[0]);
 
-        System.out.println(postagem);
+        System.out.println(quadra);
 
-        return postagem;
+        return quadra;
 
     }
 }
