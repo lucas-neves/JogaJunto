@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.util.DisplayMetrics;
@@ -26,6 +27,13 @@ import android.view.animation.Interpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+
+import com.jogajunto.modelo.Quadra;
+import com.jogajunto.tasks.ReceberQuadrasTask;
+
+import java.util.List;
+
+import static android.R.id.list;
 
 
 public class MainActivity extends AppCompatActivity
@@ -117,8 +125,17 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
+
+            ReceberQuadrasTask quadrasTask = new ReceberQuadrasTask();
+            List<Quadra> quadra = quadrasTask.doInBackground(null);
+//
+//        ReceberPostagemTask postagemTask = new ReceberPostagemTask();
+//        Quadra quadra = postagemTask.doInBackground(33);
+
             Intent fav = new Intent(this, Favoritos.class);
+//            fav.putExtra("Quadras", (Parcelable) quadra);
             startActivity(fav);
+
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {

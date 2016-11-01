@@ -8,7 +8,7 @@ import feign.Param;
 import feign.RequestLine;
 
 /**
- * Created by aluno on 28/10/2016.
+ * Created by lucasn on 28/10/2016.
  */
 public interface QuadrasRequests {
 

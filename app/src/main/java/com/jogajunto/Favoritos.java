@@ -1,6 +1,5 @@
 package com.jogajunto;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
+
+import com.jogajunto.modelo.Quadra;
 
 import java.util.ArrayList;
 
@@ -35,7 +35,8 @@ public class Favoritos extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long i)
             {
                 Intent informations = new Intent(Favoritos.this, TelaQuadra.class);
-//                informations.putExtra("Quadra", parent.getAdapter().getItem(position));
+                informations.putExtra("Quadra", parent.getAdapter().getItemViewType(R.id.imageView));
+                informations.putExtra("Descricao", parent.getAdapter().getItemViewType(R.id.imageView));
                 startActivity(informations);
                 Favoritos.this.finish();
             }

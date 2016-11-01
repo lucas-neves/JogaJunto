@@ -14,12 +14,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jogajunto.modelo.Postagem;
-import com.jogajunto.tasks.ReceberPostagemTask;
-import com.jogajunto.tasks.ReceberPostagensTask;
-
-import java.util.List;
-
 import butterknife.ButterKnife;
 import butterknife.Bind;
 
@@ -63,12 +57,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login() {
-
-        ReceberPostagensTask postagensTask = new ReceberPostagensTask();
-        List<Postagem> postagems = postagensTask.doInBackground(null);
-
-        ReceberPostagemTask postagemTask = new ReceberPostagemTask();
-        Postagem postagem = postagemTask.doInBackground(33);
 
         Log.d(TAG, "Login");
 

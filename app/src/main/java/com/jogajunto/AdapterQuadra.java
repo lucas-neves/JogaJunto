@@ -8,15 +8,18 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jogajunto.modelo.Quadra;
+
 import java.util.ArrayList;
 
 /**
- * Created by aluno on 23/09/2016.
+ * Created by lucasn on 23/09/2016.
  */
 public class AdapterQuadra extends BaseAdapter {
 
     private Context context;
     private ArrayList<Quadra> quadras;
+
     public AdapterQuadra(Context context, ArrayList<Quadra> quadras)
     {
         this.context = context;

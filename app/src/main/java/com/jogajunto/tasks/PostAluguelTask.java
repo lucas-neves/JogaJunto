@@ -1,8 +1,10 @@
-package com.ep4.survivethealiens.Feign.Task;
+package com.jogajunto.tasks;
 
 import android.os.AsyncTask;
 
-import modelo.Aluguel;
+import com.jogajunto.modelo.Aluguel;
+
+import com.jogajunto.requests.AluguelRequests;
 
 import feign.Feign;
 import feign.Logger;
@@ -10,7 +12,7 @@ import feign.gson.GsonDecoder;
 import feign.gson.GsonEncoder;
 
 /**
- * Created by Carla on 23/10/2016.
+ * Created by lucasn on 23/10/2016.
  */
 
 public class PostAluguelTask extends AsyncTask<Aluguel, Void, Aluguel> {
@@ -24,7 +26,7 @@ public class PostAluguelTask extends AsyncTask<Aluguel, Void, Aluguel> {
                     .logLevel(Logger.Level.FULL)
                     .target(AluguelRequests.class, "http://jogajunto.azurewebsites.net/api/");// lá em PostagemRequest, as URIS
             //serão pegas a partir desta URL
-            Aluguel aluguel = request.reservarQuadra(params[0]);
+            Aluguel aluguel = request.reservar(params[0]);
             return aluguel;
         }catch (Exception e){
             System.err.println("Erro de comunicação,");

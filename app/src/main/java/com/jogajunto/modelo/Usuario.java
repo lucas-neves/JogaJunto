@@ -1,7 +1,7 @@
-package com.jogajunto;
+package com.jogajunto.modelo;
 
 /**
- * Created by Administrator on 20/09/2016.
+ * Created by lucasn on 20/09/2016.
  */
 
 public class Usuario {

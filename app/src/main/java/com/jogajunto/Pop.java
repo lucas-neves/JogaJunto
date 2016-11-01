@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 
 /**
- * Created by aluno on 07/10/2016.
+ * Created by lucasn on 07/10/2016.
  */
 public class Pop extends Activity {
 
