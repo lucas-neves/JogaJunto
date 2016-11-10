@@ -13,32 +13,23 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
         android:layout_height="match_parent"
-        android:layout_width="match_parent"
-
-        ></android.support.v4.view.ViewPager>
-
-
-
+        android:layout_width="match_parent"></android.support.v4.view.ViewPager>
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="wrap_content">
 
-        >
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:layout_width="200sp"
                 android:layout_height="220sp"
                 android:id="@+id/image1"
                 android:src="@drawable/iconjj"
-
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true" />
-
 
             <TextView
                 android:layout_width="wrap_content"
@@ -47,10 +38,7 @@
                 android:layout_marginTop="45dp"
                 android:text="Nome da Quadra: "
                 android:textSize="18dp"
-                android:layout_below="@+id/image1"
-
-
-                />
+                android:layout_below="@+id/image1"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -59,19 +47,16 @@
                 android:layout_below="@+id/textoNomeQuadra"
                 android:layout_marginTop="20dp"
                 android:text="Endereço da Quadra: "
-                android:textSize="18dp"
+                android:textSize="18dp"/>
 
-                />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textoTelefoneQuadra"
                 android:layout_below="@+id/textoEnderecoQuadra"
                 android:layout_marginTop="20dp"
-                android:text="Telefone da Quadra: "
-                android:textSize="18dp"
+                android:text="Telefone da Quadra: " />
 
-                />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -79,9 +64,7 @@
                 android:layout_below="@+id/textoTelefoneQuadra"
                 android:layout_marginTop="20dp"
                 android:text="Valor da Quadra: "
-                android:textSize="18dp"
-
-                />
+                android:textSize="18dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -90,9 +73,7 @@
                 android:layout_below="@+id/textovalorQuadra"
                 android:layout_marginTop="20dp"
                 android:text="Opicinias: "
-                android:textSize="18dp"
-
-                />
+                android:textSize="18dp" />
 
 
             <TextView
@@ -110,9 +91,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/spinnerDia"
                 android:layout_marginTop="10sp"
-                android:layout_below="@+id/textoData"
-
-                ></Spinner>
+                android:layout_below="@+id/textoData"></Spinner>
 
 
             <Spinner
@@ -122,9 +101,7 @@
                 android:layout_marginTop="10sp"
                 android:layout_toRightOf="@+id/spinnerDia"
                 android:layout_marginLeft="20sp"
-                android:layout_below="@+id/textoData"
-
-                ></Spinner>
+                android:layout_below="@+id/textoData"></Spinner>
 
 
             <Spinner
@@ -132,9 +109,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/spinnerAno"
                 android:layout_marginTop="20sp"
-                android:layout_below="@+id/spinnerDia"
-
-                ></Spinner>
+                android:layout_below="@+id/spinnerDia"></Spinner>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -143,17 +118,14 @@
                 android:textSize="18dp"
                 android:layout_marginTop="25dp"
                 android:id="@+id/textoHorario"
-                android:layout_below="@id/spinnerAno"
-                />
+                android:layout_below="@id/spinnerAno"/>
 
             <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/spinnerHorario"
                 android:layout_marginTop="10sp"
-                android:layout_below="@+id/textoHorario"
-
-                ></Spinner>
+                android:layout_below="@+id/textoHorario"></Spinner>
 
             <ImageButton
                 android:layout_width="80dp"
@@ -170,8 +142,7 @@
                 android:layout_toRightOf="@+id/spinnerHorario"
                 android:src="@drawable/maps"
                 android:layout_marginLeft="30sp"
-                android:layout_below="@id/textoHorario"
-                />
+                android:layout_below="@id/textoHorario"/>
 
             <Button
                 android:layout_width="wrap_content"
@@ -182,18 +153,11 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="60sp"
                 android:onClick="alertaReserva"
-                android:layout_below="@+id/spinnerHorario"
-
-                />
+                android:layout_below="@+id/spinnerHorario"/>
 
         </RelativeLayout>
-
-
-
-
     </ScrollView>
 
     <include layout="@layout/activity_maps" />
-
 
 </RelativeLayout>

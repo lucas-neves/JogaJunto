@@ -12,9 +12,9 @@ import feign.RequestLine;
  */
 public interface QuadrasRequests {
 
-    @RequestLine("GET /posts")
+    @RequestLine("GET /Quadras")
     List<Quadra> receberQuadras();
 
-    @RequestLine("GET /posts/{id}")
-    Quadra receberQuadra(@Param("id") Integer id);
+    @RequestLine("GET /Quadras/{Id_Quadra}")
+    Quadra receberQuadra(@Param("Id_Quadra") Integer id);
 }

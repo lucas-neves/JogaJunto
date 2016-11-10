@@ -23,16 +23,16 @@ public class Aluguel {
     private String Confirm;
 
     @SerializedName("Id_Quadra")
-    private String Id_Quadra;
+    private Integer Id_Quadra;
 
     @SerializedName("Id_Cliente")
-    private String Id_Cliente;
+    private Integer Id_Cliente;
 
     public Aluguel(){
 
     }
 
-    public Aluguel(Integer id_Aluguel, Date dataJogo, Date hora, String confirm, String id_Quadra, String id_Cliente) {
+    public Aluguel(Integer id_Aluguel, Date dataJogo, Date hora, String confirm, Integer id_Quadra, Integer id_Cliente) {
         Id_Aluguel = 0;
         DataJogo = dataJogo;
         Hora = hora;
@@ -74,19 +74,19 @@ public class Aluguel {
         Confirm = confirm;
     }
 
-    public String getId_Quadra() {
+    public Integer getId_Quadra() {
         return Id_Quadra;
     }
 
-    public void setId_Quadra(String id_Quadra) {
+    public void setId_Quadra(Integer id_Quadra) {
         Id_Quadra = id_Quadra;
     }
 
-    public String getId_Cliente() {
+    public Integer getId_Cliente() {
         return Id_Cliente;
     }
 
-    public void setId_Cliente(String id_Cliente) {
+    public void setId_Cliente(Integer id_Cliente) {
         Id_Cliente = id_Cliente;
     }
 }
