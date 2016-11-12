@@ -15,6 +15,6 @@ public interface QuadrasRequests {
     @RequestLine("GET /Quadras")
     List<Quadra> receberQuadras();
 
-    @RequestLine("GET /Quadras/{Id_Quadra}")
-    Quadra receberQuadra(@Param("Id_Quadra") Integer id);
+    @RequestLine("GET /Quadras/{x}")
+    Quadra receberQuadra(@Param("x") Integer id);
 }

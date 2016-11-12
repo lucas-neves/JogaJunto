@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jogajunto.tasks.AutenticarTask;
+
 import butterknife.ButterKnife;
 import butterknife.Bind;
 
@@ -77,6 +79,13 @@ public class LoginActivity extends AppCompatActivity {
         String password = _passwordText.getText().toString();
 
         // TODO: Implement your own authentication logic here.
+
+        AutenticarTask task = new AutenticarTask();
+        boolean autenticado = task.doInBackground(email, password);
+        if (autenticado) {
+            Autenticacao.autenticado = true;
+            Autenticacao.login = email;
+        }
 
         new android.os.Handler().postDelayed(
                 new Runnable() {

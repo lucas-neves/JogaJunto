@@ -16,7 +16,7 @@ public class Quadra {
     public int icon2 = R.drawable.rating;
 
 
-    @SerializedName("Id_Quadra")
+    @SerializedName("id_Quadra")
     private Integer Id_Quadra;
 
     @SerializedName("Id_Dono")

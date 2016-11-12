@@ -36,6 +36,11 @@ public class TelaQuadra extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        if (!Autenticacao.autenticado) {
+            // codigo para chamar a tela de login
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_quadra);
 
