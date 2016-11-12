@@ -78,20 +78,19 @@ public class LoginActivity extends AppCompatActivity {
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        // TODO: Implement your own authentication logic here.
-
-        AutenticarTask task = new AutenticarTask();
-        boolean autenticado = task.doInBackground(email, password);
-        if (autenticado) {
-            Autenticacao.autenticado = true;
-            Autenticacao.login = email;
-        }
-
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
+                        
                         // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
+                        AutenticarTask task = new AutenticarTask();
+                        boolean autenticado = task.doInBackground(email, password);
+                        if (autenticado) {
+                            Autenticacao.autenticado = true;
+                            Autenticacao.login = email;
+                            onLoginSuccess();
+                        }
+                        
                         // onLoginFailed();
                         progressDialog.dismiss();
                     }
