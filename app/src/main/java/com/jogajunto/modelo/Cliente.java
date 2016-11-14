@@ -7,25 +7,25 @@ import com.google.gson.annotations.SerializedName;
  */
 public class Cliente {
 
-    @SerializedName("Id_Cliente")
+    @SerializedName("id_Cliente")
     private Integer Id_Cliente;
 
-    @SerializedName("Username")
+    @SerializedName("username")
     private String Username;
 
-    @SerializedName("Senha")
+    @SerializedName("senha")
     private String Senha;
 
-    @SerializedName("Email")
+    @SerializedName("email")
     private String Email;
 
-    @SerializedName("Id_Acc")
+    @SerializedName("id_Acc")
     private Integer Id_Acc;
 
-    @SerializedName("Id_End")
+    @SerializedName("id_End")
     private Integer Id_End;
 
-    @SerializedName("Telefone")
+    @SerializedName("telefone")
     private String Telefone;
 
     public Cliente(){

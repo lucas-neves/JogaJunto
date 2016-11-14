@@ -10,22 +10,22 @@ import java.sql.Date;
  */
 public class Aluguel {
 
-    @SerializedName("Id_Aluguel")
+    @SerializedName("id_Aluguel")
     private Integer Id_Aluguel;
 
-    @SerializedName("DataJogo")
+    @SerializedName("dataJogo")
     private Date DataJogo;
 
-    @SerializedName("Hora")
+    @SerializedName("hora")
     private Date Hora;
 
-    @SerializedName("Confirm")
+    @SerializedName("confirm")
     private String Confirm;
 
-    @SerializedName("Id_Quadra")
+    @SerializedName("id_Quadra")
     private Integer Id_Quadra;
 
-    @SerializedName("Id_Cliente")
+    @SerializedName("id_Cliente")
     private Integer Id_Cliente;
 
     public Aluguel(){

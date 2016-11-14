@@ -20,7 +20,7 @@ public class ReceberQuadrasTask extends AsyncTask<Void, Void, List<Quadra>>{
 
         QuadrasRequests requests = Feign.builder()
                 .decoder(new GsonDecoder())
-                .target(QuadrasRequests.class, "http://jogajunto.azurewebsites.net/api/");
+                .target(QuadrasRequests.class, "http://jogajuntoapi.azurewebsites.net/api/");
 
         List<Quadra> quadras = requests.receberQuadras();
 

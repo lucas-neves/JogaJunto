@@ -1,11 +1,5 @@
 package com.jogajunto.requests;
 
-import com.jogajunto.modelo.Aluguel;
-import com.jogajunto.modelo.Quadra;
-
-import java.util.List;
-
-import feign.Param;
 import feign.RequestLine;
 
 /**
@@ -13,9 +7,6 @@ import feign.RequestLine;
  */
 public interface AutenticacaoRequests {
 
-    @RequestLine("POST Autenticar/")
-    void autenticar(String login, String senha);
-
-//    @RequestLine("GET /posts/{id}")
-//    Quadra receberQuadra(@Param("id") Integer id);
+    @RequestLine("POST Autenticar/login/")
+    void autenticar(String email, String senha);
 }

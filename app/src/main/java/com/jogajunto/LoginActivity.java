@@ -1,7 +1,6 @@
 package com.jogajunto;
 
 import android.app.ProgressDialog;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
@@ -75,8 +74,8 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setMessage("Autenticando...");
         progressDialog.show();
 
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
+        final String email = _emailText.getText().toString();
+        final String password = _passwordText.getText().toString();
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
@@ -85,10 +84,13 @@ public class LoginActivity extends AppCompatActivity {
                         // On complete call either onLoginSuccess or onLoginFailed
                         AutenticarTask task = new AutenticarTask();
                         boolean autenticado = task.doInBackground(email, password);
+                        //Log.d("RESULT TASK", String.valueOf(autenticado));
                         if (autenticado) {
                             Autenticacao.autenticado = true;
                             Autenticacao.login = email;
                             onLoginSuccess();
+                        }else{
+                            onLoginFailed();
                         }
                         
                         // onLoginFailed();

@@ -19,22 +19,22 @@ public class Quadra {
     @SerializedName("id_Quadra")
     private Integer Id_Quadra;
 
-    @SerializedName("Id_Dono")
+    @SerializedName("id_Dono")
     private Integer Id_Dono;
 
-    @SerializedName("Id_End")
+    @SerializedName("id_End")
     private Integer Id_End;
 
-    @SerializedName("CoordenateOne")
+    @SerializedName("coordenateOne")
     private String CoordenateOne;
 
-    @SerializedName("CoordenateTwo")
+    @SerializedName("coordenateTwo")
     private String CoordenateTwo;
 
-    @SerializedName("Opcionais")
+    @SerializedName("opcionais")
     private String Opcionais;
 
-    @SerializedName("Tipo_Quadra")
+    @SerializedName("tipo_Quadra")
     private String Tipo_Quadra;
 
     public Quadra(){

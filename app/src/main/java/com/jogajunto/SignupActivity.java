@@ -1,6 +1,7 @@
 package com.jogajunto;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -9,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.jogajunto.tasks.NovoUsuarioTask;
 
 import butterknife.ButterKnife;
 import butterknife.Bind;
@@ -61,7 +64,7 @@ public class SignupActivity extends AppCompatActivity {
         progressDialog.show();
 
         String name = _nameText.getText().toString();
-        String email = _emailText.getText().toString();
+        final String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
         // TODO: Implement your own signup logic here.
@@ -69,9 +72,18 @@ public class SignupActivity extends AppCompatActivity {
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        // On complete call either onSignupSuccess or onSignupFailed
-                        // depending on success
-                        onSignupSuccess();
+
+                        // On complete call either onLoginSuccess or onLoginFailed
+                        NovoUsuarioTask task = new NovoUsuarioTask();
+                        boolean usuarioExiste = task.doInBackground(email);
+                        //Log.d("RESULT TASK", String.valueOf(autenticado));
+                        if (!usuarioExiste) {
+                            onSignupSuccess();
+                        }else{
+                            onSignupFailed();
+                            Toast.makeText(getBaseContext(), "E-mail já cadastrado!", Toast.LENGTH_LONG).show();
+                        }
+
                         // onSignupFailed();
                         progressDialog.dismiss();
                     }
@@ -82,7 +94,6 @@ public class SignupActivity extends AppCompatActivity {
     public void onSignupSuccess() {
         _signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
-        finish();
     }
 
     public void onSignupFailed() {
@@ -99,14 +110,14 @@ public class SignupActivity extends AppCompatActivity {
         String password = _passwordText.getText().toString();
 
         if (name.isEmpty() || name.length() < 2) {
-            _nameText.setError("Precisa ser maior que duas letras");
+            _nameText.setError("O nome precisa ter mais de duas letras!");
             valid = false;
         } else {
             _nameText.setError(null);
         }
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailText.setError("Entre com um endereço de email válido");
+            _emailText.setError("Entre com um endereço de email válido!");
             valid = false;
         } else {
             _emailText.setError(null);

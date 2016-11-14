@@ -24,7 +24,7 @@ public class PostAluguelTask extends AsyncTask<Aluguel, Void, Aluguel> {
                     .encoder(new GsonEncoder())
                     .decoder(new GsonDecoder())
                     .logLevel(Logger.Level.FULL)
-                    .target(AluguelRequests.class, "http://jogajunto.azurewebsites.net/api/");// lá em PostagemRequest, as URIS
+                    .target(AluguelRequests.class, "http://jogajuntoapi.azurewebsites.net/api/");// lá em PostagemRequest, as URIS
             //serão pegas a partir desta URL
             Aluguel aluguel = request.reservar(params[0]);
             return aluguel;
