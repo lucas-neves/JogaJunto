@@ -18,6 +18,7 @@ import butterknife.Bind;
 
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
+    public static boolean cadastrou = false;
 
     @Bind(R.id.input_name) EditText _nameText;
     @Bind(R.id.input_email) EditText _emailText;
@@ -76,15 +77,14 @@ public class SignupActivity extends AppCompatActivity {
                         // On complete call either onLoginSuccess or onLoginFailed
                         NovoUsuarioTask task = new NovoUsuarioTask();
                         boolean usuarioExiste = task.doInBackground(email);
-                        //Log.d("RESULT TASK", String.valueOf(autenticado));
+
                         if (!usuarioExiste) {
                             onSignupSuccess();
                         }else{
                             onSignupFailed();
-                            Toast.makeText(getBaseContext(), "E-mail já cadastrado!", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getBaseContext(), "E-mail já cadastrado!", Toast.LENGTH_LONG).show();
                         }
 
-                        // onSignupFailed();
                         progressDialog.dismiss();
                     }
                 }, 3000);
@@ -94,6 +94,9 @@ public class SignupActivity extends AppCompatActivity {
     public void onSignupSuccess() {
         _signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
+        cadastrou = true;
+        Intent login = new Intent(this, LoginActivity.class);
+        startActivity(login);
     }
 
     public void onSignupFailed() {

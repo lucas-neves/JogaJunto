@@ -3,7 +3,7 @@ package com.jogajunto.tasks;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.jogajunto.requests.NovoUsuarioRequests;
+import com.jogajunto.requests.AutenticacaoRequests;
 
 import feign.Feign;
 import feign.Logger;
@@ -17,9 +17,9 @@ public class NovoUsuarioTask extends AsyncTask<String, Void, Boolean> {
     @Override
     public Boolean doInBackground(String... params) {
         try{
-            NovoUsuarioRequests request = Feign.builder()
+            AutenticacaoRequests request = Feign.builder()
                     .logLevel(Logger.Level.FULL)
-                    .target(NovoUsuarioRequests.class, "http://jogajuntoapi.azurewebsites.net/api/");
+                    .target(AutenticacaoRequests.class, "http://jogajuntoapi.azurewebsites.net/api/");
 
             request.usuarioExiste(params[0]);
             return true;
