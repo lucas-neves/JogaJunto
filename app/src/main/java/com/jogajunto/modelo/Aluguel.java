@@ -28,17 +28,25 @@ public class Aluguel {
     @SerializedName("id_Cliente")
     private Integer Id_Cliente;
 
+    @SerializedName("quadra")
+    private Quadra Quadra;
+
+    @SerializedName("cliente")
+    private Cliente Cliente;
+
     public Aluguel(){
 
     }
 
-    public Aluguel(Integer id_Aluguel, Date dataJogo, Date hora, String confirm, Integer id_Quadra, Integer id_Cliente) {
-        Id_Aluguel = 0;
-        DataJogo = dataJogo;
-        Hora = hora;
-        Confirm = confirm;
-        Id_Quadra = id_Quadra;
-        Id_Cliente = id_Cliente;
+    public Aluguel(Integer id_Aluguel, Date dataJogo, Date hora, String confirm, Integer id_Quadra, Integer id_Cliente, Quadra quadra, Cliente cliente) {
+        this.Id_Aluguel = id_Aluguel;
+        this.DataJogo = dataJogo;
+        this.Hora = hora;
+        this.Confirm = confirm;
+        this.Id_Quadra = id_Quadra;
+        this.Id_Cliente = id_Cliente;
+        this.Quadra = quadra;
+        this.Cliente = cliente;
     }
 
 
@@ -71,7 +79,7 @@ public class Aluguel {
     }
 
     public void setConfirm(String confirm) {
-        Confirm = confirm;
+        this.Confirm = confirm;
     }
 
     public Integer getId_Quadra() {
@@ -89,4 +97,21 @@ public class Aluguel {
     public void setId_Cliente(Integer id_Cliente) {
         Id_Cliente = id_Cliente;
     }
+
+    public Quadra getQuadra() {
+        return this.Quadra;
+    }
+
+    public void setQuadra(Quadra quadra) {
+        this.Quadra = quadra;
+    }
+
+    public Cliente getCliente() {
+        return this.Cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.Cliente = cliente;
+    }
+
 }
