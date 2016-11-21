@@ -15,7 +15,6 @@ public class Quadra {
     public int icon1 = R.drawable.maps;
     public int icon2 = R.drawable.rating;
 
-
     @SerializedName("id_Quadra")
     private Integer Id_Quadra;
 
@@ -37,23 +36,26 @@ public class Quadra {
     @SerializedName("tipo_Quadra")
     private String Tipo_Quadra;
 
-    public Quadra(){
+    @SerializedName("valor_Quadra")
+    private float Valor_Quadra;
 
-    }
+    @SerializedName("descricao")
+    private String Descricao;
 
-    public Quadra(int id_Dono, int id_End, String coordOne, String coordTwo, String opcionais, String tipoQuadra){
+    @SerializedName("image_Path")
+    private String Image_Path;
+
+    public Quadra(int id_Quadra, int id_Dono, int id_End, String coordOne, String coordTwo, String opcionais, String tipoQuadra, float valor_Quadra, String descricao, String image_Path){
+        this.Id_Quadra = id_Quadra;
         this.Id_Dono = id_Dono;
         this.Id_End = id_End;
         this.CoordenateOne = coordOne;
         this.CoordenateTwo = coordTwo;
         this.Opcionais = opcionais;
         this.Tipo_Quadra = tipoQuadra;
-        Id_Quadra = 0;
-    }
-
-    public Quadra(String coordOne, String coordTwo){
-        CoordenateOne = coordOne;
-        CoordenateTwo = coordTwo;
+        this.Valor_Quadra = valor_Quadra;
+        this.Descricao = descricao;
+        this.Image_Path = image_Path;
     }
 
     public Integer getId_Quadra() {
@@ -62,6 +64,22 @@ public class Quadra {
 
     public void setId_Quadra(Integer id_Quadra) {
         Id_Quadra = id_Quadra;
+    }
+
+    public Integer getId_End() {
+        return Id_End;
+    }
+
+    public void setId_End(Integer id_End) {
+        Id_End = id_End;
+    }
+
+    public Integer getId_Dono() {
+        return Id_Dono;
+    }
+
+    public void setId_Dono(Integer id_Dono) {
+        Id_Dono = id_Dono;
     }
 
     public String getTipo_Quadra() {
@@ -96,19 +114,27 @@ public class Quadra {
         CoordenateOne = coordenateOne;
     }
 
-    public Integer getId_End() {
-        return Id_End;
+    public float getValor_Quadra() {
+        return Valor_Quadra;
     }
 
-    public void setId_End(Integer id_End) {
-        Id_End = id_End;
+    public void setValor_Quadra(float valor_Quadra) {
+        Valor_Quadra = valor_Quadra;
     }
 
-    public Integer getId_Dono() {
-        return Id_Dono;
+    public String getDescricao() {
+        return Descricao;
     }
 
-    public void setId_Dono(Integer id_Dono) {
-        Id_Dono = id_Dono;
+    public void setDescricao(String descricao) {
+        Descricao = descricao;
+    }
+
+    public String getImage_Path() {
+        return Image_Path;
+    }
+
+    public void setImage_Path(String image_Path) {
+        Image_Path = image_Path;
     }
 }

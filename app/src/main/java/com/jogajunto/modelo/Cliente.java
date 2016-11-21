@@ -32,14 +32,14 @@ public class Cliente {
 
     }
 
-    public Cliente(Integer Id_Cliente, String username, String senha, String email, Integer id_Acc, Integer id_End, String telefone) {
-        Id_Cliente = 0;
-        Username = username;
-        Senha = senha;
-        Email = email;
-        Id_Acc = id_Acc;
-        Id_End = id_End;
-        Telefone = telefone;
+    public Cliente(Integer id_Cliente, String username, String senha, String email, Integer id_Acc, Integer id_End, String telefone) {
+        this.Id_Cliente = id_Cliente;
+        this.Username = username;
+        this.Senha = senha;
+        this.Email = email;
+        this.Id_Acc = id_Acc;
+        this.Id_End = id_End;
+        this.Telefone = telefone;
     }
 
 
