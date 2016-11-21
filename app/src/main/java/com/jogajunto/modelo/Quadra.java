@@ -8,13 +8,6 @@ import com.jogajunto.R;
  */
 public class Quadra {
 
-    public int id;
-    public String nome = "Rochdalão";
-    public String descricao = "Osasco Fiao";
-    public int icon = R.drawable.quadra1;
-    public int icon1 = R.drawable.maps;
-    public int icon2 = R.drawable.rating;
-
     @SerializedName("id_Quadra")
     private Integer Id_Quadra;
 
@@ -44,6 +37,11 @@ public class Quadra {
 
     @SerializedName("image_Path")
     private String Image_Path;
+
+
+    public Quadra(){
+
+    }
 
     public Quadra(int id_Quadra, int id_Dono, int id_End, String coordOne, String coordTwo, String opcionais, String tipoQuadra, float valor_Quadra, String descricao, String image_Path){
         this.Id_Quadra = id_Quadra;

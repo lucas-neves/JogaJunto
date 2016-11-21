@@ -54,11 +54,11 @@ public class AdapterQuadra extends BaseAdapter {
 
             Quadra quadra = quadras.get(position);
 
-            nome.setText(quadra.nome);
-            descricao.setText(quadra.descricao);
-            imgQuadra.setImageResource(quadra.icon);
-            iconMap.setImageResource(quadra.icon1);
-            iconRat.setImageResource(quadra.icon2);
+//            nome.setText(quadra.nome);
+//            descricao.setText(quadra.descricao);
+//            imgQuadra.setImageResource(quadra.icon);
+//            iconMap.setImageResource(quadra.icon1);
+//            iconRat.setImageResource(quadra.icon2);
         }
         return view;
     }

@@ -18,5 +18,5 @@ import java.util.ArrayList;
 public class Autenticacao  {
 
     public static boolean autenticado = false;
-    public static String login = null;
+    public static int idCliente = 0;
 }

@@ -5,12 +5,26 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
+import android.view.Display;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Interpolator;
 import android.view.animation.OvershootInterpolator;
+import android.widget.FrameLayout;
+
+import com.jogajunto.modelo.Quadra;
+import com.jogajunto.tasks.ReceberQuadrasTask;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
 
 public class PlayAreaView extends View {
 
@@ -26,7 +40,23 @@ public class PlayAreaView extends View {
     private long endTime;
     private float totalAnimDx;
     private float totalAnimDy;
-    private int indiceQuadra = 1;
+    private int screenSize;
+
+    ReceberQuadrasTask task = new ReceberQuadrasTask();
+    List<Quadra> quadras = task.doInBackground();
+
+    public PlayAreaView(Context context) {
+        super(context);
+        translate = new Matrix();
+        gestures = new GestureDetector(context,
+                new GestureListener(this));
+
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        screenSize = display.getWidth();
+
+        changeImage(screenSize);
+    }
 
     public void onAnimateMove(float dx, float dy, long duration) {
         animateStart = new Matrix(translate);
@@ -43,47 +73,38 @@ public class PlayAreaView extends View {
             }
         });
 
-        if(dx < getLeft()-100 || dx > getRight()+100)
-            changePlace();
-    }
-
-    public void changePlace(){
-
-        switch (indiceQuadra){
-            case 1:
-                droid = BitmapFactory.decodeResource(getResources(),
-                        R.drawable.quadra1);
-                indiceQuadra++;
-                break;
-
-            case 2:
-                droid = BitmapFactory.decodeResource(getResources(),
-                        R.drawable.quadra2);
-                indiceQuadra++;
-                break;
-
-            case 3:
-                droid = BitmapFactory.decodeResource(getResources(),
-                        R.drawable.quadra3);
-                indiceQuadra++;
-                break;
-
-            case 4:
-                droid = BitmapFactory.decodeResource(getResources(),
-                        R.drawable.quadra4);
-                indiceQuadra++;
-                break;
-            case 5:
-                droid = BitmapFactory.decodeResource(getResources(),
-                        R.drawable.quadra5);
-                indiceQuadra=1;
-                break;
+        if(dx < getLeft()-100) {
+            deslikeAction();
+        }else if(dx > getRight()+100) {
+            likeAction();
         }
+
     }
 
-    public void changeByButton(){
-        changePlace();
+    public void likeAction(){
+//        postFavoritos
+        changeImage(screenSize);
         onResetLocation();
+    }
+
+    public void deslikeAction(){
+        changeImage(screenSize);
+        onResetLocation();
+    }
+
+    public static Bitmap getBitmapFromURL(String src) {
+        try {
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            return myBitmap;
+        } catch (IOException e) {
+            // Log exception
+            return null;
+        }
     }
 
     private void onAnimateStep() {
@@ -126,13 +147,28 @@ public class PlayAreaView extends View {
         translate.postTranslate(dx, dy);
     }
 
-    public PlayAreaView(Context context) {
-        super(context);
-        translate = new Matrix();
-        gestures = new GestureDetector(context,
-                new GestureListener(this));
-        droid = BitmapFactory.decodeResource(getResources(),
-                R.drawable.quadra2);
+    public void changeImage(int screenSize){
+
+        if(quadras.size()>1){
+            quadras.remove(0);
+            droid = getBitmapFromURL(quadras.get(0).getImage_Path());
+            droid = getResizedBitmap(droid, screenSize, true);
+        }else{
+            droid = getBitmapFromURL("http://acaboudeacabar.xpg.uol.com.br/wp-content/uploads/2016/08/destaque_acaboudeacabar.png");
+            droid = getResizedBitmap(droid, screenSize, true);
+        }
+    }
+
+    public static Bitmap getResizedBitmap(Bitmap realImage, float maxImageSize,
+                                   boolean filter) {
+        float ratio = Math.min(
+                (float) maxImageSize / realImage.getWidth(),
+                (float) maxImageSize / realImage.getHeight());
+        int width = Math.round((float) ratio * realImage.getWidth());
+
+        Bitmap newBitmap = Bitmap.createScaledBitmap(realImage, width,
+                300, filter);
+        return newBitmap;
     }
 
     @Override

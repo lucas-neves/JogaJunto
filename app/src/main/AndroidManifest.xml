@@ -62,7 +62,7 @@
             android:name=".SignupActivity"
             android:theme="@style/AppTheme.Dark" />
         <activity android:name=".Favoritos" />
-        <activity android:name=".TelaFiltro" />
+        <activity android:name=".TelaFiltro" ></activity>
         <activity android:name=".TelaQuadra" />
         <activity android:name=".Pop" />
     </application>

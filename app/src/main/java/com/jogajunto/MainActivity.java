@@ -2,6 +2,7 @@ package com.jogajunto;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +15,11 @@ import android.view.MenuItem;
 
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+
+import com.jogajunto.modelo.Quadra;
+import com.jogajunto.tasks.ReceberQuadrasTask;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -47,13 +53,13 @@ public class MainActivity extends AppCompatActivity
         yes = (ImageButton) findViewById(R.id.btnYes);
         yes.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                image.changeByButton();
+                image.likeAction();
             }
         });
         no = (ImageButton) findViewById(R.id.btnNo);
         no.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                image.changeByButton();
+                image.deslikeAction();
             }
         });
     }
@@ -72,6 +78,7 @@ public class MainActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

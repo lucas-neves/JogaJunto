@@ -21,8 +21,6 @@ public class TelaFiltro extends AppCompatActivity {
     CheckBox checkChurrasqueira;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

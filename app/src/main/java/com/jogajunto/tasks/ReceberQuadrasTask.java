@@ -1,6 +1,7 @@
 package com.jogajunto.tasks;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.jogajunto.modelo.Quadra;
 import com.jogajunto.requests.QuadrasRequests;
@@ -25,7 +26,7 @@ public class ReceberQuadrasTask extends AsyncTask<Void, Void, List<Quadra>>{
         List<Quadra> quadras = requests.receberQuadras();
 
         for (Quadra p : quadras) {
-            System.out.println(p.getId_Quadra() + " " + p.getOpcionais());
+            Log.e("Quadra: ", p.getId_Quadra() + " " + p.getDescricao());
         }
 
         return quadras;

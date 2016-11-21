@@ -13,7 +13,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jogajunto.modelo.Quadra;
 import com.jogajunto.tasks.AutenticarTask;
+import com.jogajunto.tasks.ReceberQuadrasTask;
+
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.Bind;
@@ -54,7 +58,6 @@ public class LoginActivity extends AppCompatActivity {
         //para garantir que a internet será acessada
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
     }
 
     public void login() {
@@ -80,14 +83,13 @@ public class LoginActivity extends AppCompatActivity {
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        
+
                         // On complete call either onLoginSuccess or onLoginFailed
                         AutenticarTask task = new AutenticarTask();
                         boolean autenticado = task.doInBackground(email, password);
                         //Log.d("RESULT TASK", String.valueOf(autenticado));
                         if (autenticado) {
                             Autenticacao.autenticado = true;
-                            Autenticacao.login = email;
                             onLoginSuccess();
                         }else{
                             onLoginFailed();
