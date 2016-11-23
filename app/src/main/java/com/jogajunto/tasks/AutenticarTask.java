@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.jogajunto.Autenticacao;
+import com.jogajunto.modelo.Cliente;
 import com.jogajunto.requests.AutenticacaoRequests;
 
 import feign.Feign;
@@ -15,10 +16,10 @@ import feign.gson.GsonEncoder;
  * Created by lucasn on 23/10/2016.
  */
 
-public class AutenticarTask extends AsyncTask<String, Void, Boolean> {
+public class AutenticarTask extends AsyncTask<String, Void, Cliente> {
 
     @Override
-    public Boolean doInBackground(String... params) {
+    public Cliente doInBackground(String... params) {
         try{
             AutenticacaoRequests request = Feign.builder()
                     .encoder(new GsonEncoder())
@@ -26,12 +27,13 @@ public class AutenticarTask extends AsyncTask<String, Void, Boolean> {
                     .logLevel(Logger.Level.FULL)
                     .target(AutenticacaoRequests.class, "http://jogajuntoapi.azurewebsites.net/api/");
 
-            Autenticacao.idCliente = request.autenticar(params[0], params[1]);
+            Cliente cliente = request.autenticar(params[0], params[1]);
+            Autenticacao.idCliente = cliente.getId_Cliente();
             Log.e("ID DO CLIENTE: ", String.valueOf(Autenticacao.idCliente));
-            return true;
+            return cliente;
         }catch (Exception e){
             Log.d("Exception", e.toString());
-            return false;
+            return null;
         }
     }
 }

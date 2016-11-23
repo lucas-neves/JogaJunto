@@ -9,13 +9,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.jogajunto.modelo.Quadra;
-
-import java.util.ArrayList;
+import com.jogajunto.tasks.FavoritarQuadraTask;
 
 public class Favoritos extends AppCompatActivity {
 
     private ListView list;
+
+    FavoritarQuadraTask task = new FavoritarQuadraTask(this);
+//    List<Favorito> favoritos
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +25,8 @@ public class Favoritos extends AppCompatActivity {
         setContentView(R.layout.activity_favoritos);
 
         list = (ListView) findViewById(R.id.List);
-        ArrayList<Quadra> quadras = new ArrayList<Quadra>();
-        for (int i = 0; i < 10; i++)
-            quadras.add(new Quadra());
 
-        final AdapterQuadra adapterQuadras = new AdapterQuadra(this, quadras);
+        final AdapterQuadra adapterQuadras = new AdapterQuadra(this, MainActivity.quadras);
         list.setAdapter(adapterQuadras);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -35,10 +34,9 @@ public class Favoritos extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long i)
             {
                 Intent informations = new Intent(Favoritos.this, TelaQuadra.class);
-                informations.putExtra("Quadra", parent.getAdapter().getItemViewType(R.id.imageView));
-                informations.putExtra("Descricao", parent.getAdapter().getItemViewType(R.id.imageView));
+                informations.putExtra("Quadra", adapterQuadras.getItem(position));
                 startActivity(informations);
-                Favoritos.this.finish();
+                finish();
             }
         });
     }

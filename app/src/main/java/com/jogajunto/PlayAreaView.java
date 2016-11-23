@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.Display;
 import android.view.GestureDetector;
@@ -14,15 +13,16 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Interpolator;
 import android.view.animation.OvershootInterpolator;
-import android.widget.FrameLayout;
+import android.widget.Toast;
 
+import com.jogajunto.modelo.Favorito;
 import com.jogajunto.modelo.Quadra;
+import com.jogajunto.tasks.FavoritarQuadraTask;
 import com.jogajunto.tasks.ReceberQuadrasTask;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
@@ -33,6 +33,7 @@ public class PlayAreaView extends View {
     private GestureDetector gestures;
     private Matrix translate;
     private Bitmap droid;
+    private Context context;
 
     private Matrix animateStart;
     private Interpolator animateInterpolator;
@@ -45,8 +46,10 @@ public class PlayAreaView extends View {
     ReceberQuadrasTask task = new ReceberQuadrasTask();
     List<Quadra> quadras = task.doInBackground();
 
+
     public PlayAreaView(Context context) {
         super(context);
+        this.context = context;
         translate = new Matrix();
         gestures = new GestureDetector(context,
                 new GestureListener(this));
@@ -55,7 +58,10 @@ public class PlayAreaView extends View {
         Display display = wm.getDefaultDisplay();
         screenSize = display.getWidth();
 
-        changeImage(screenSize);
+        MainActivity.quadras = quadras;
+
+        droid = getBitmapFromURL(quadras.get(0).getImage_Path());
+        droid = getResizedBitmap(droid, screenSize, true);
     }
 
     public void onAnimateMove(float dx, float dy, long duration) {
@@ -82,9 +88,13 @@ public class PlayAreaView extends View {
     }
 
     public void likeAction(){
-//        postFavoritos
-        changeImage(screenSize);
-        onResetLocation();
+        try{
+            new FavoritarQuadraTask(context).execute(new Favorito(Autenticacao.idCliente, quadras.get(0).getId_Quadra()));
+            changeImage(screenSize);
+            onResetLocation();
+        }catch (Exception e){
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 
     public void deslikeAction(){
@@ -165,10 +175,22 @@ public class PlayAreaView extends View {
                 (float) maxImageSize / realImage.getWidth(),
                 (float) maxImageSize / realImage.getHeight());
         int width = Math.round((float) ratio * realImage.getWidth());
+        int height = width - width/3;
 
         Bitmap newBitmap = Bitmap.createScaledBitmap(realImage, width,
-                300, filter);
+                height, filter);
         return newBitmap;
+    }
+
+    public String[] showInformations(){
+        String[] quadra = new String[6];
+        quadra[0] = quadras.get(0).getImage_Path();
+        quadra[1] = quadras.get(0).getDescricao();
+        quadra[2] = quadras.get(0).getEndereco().getLogradouro();
+        quadra[3] = quadras.get(0).getDono().getTelefone();
+        quadra[4] = String.valueOf(quadras.get(0).getValor_Quadra());
+        quadra[5] = quadras.get(0).getOpcionais();
+        return quadra;
     }
 
     @Override

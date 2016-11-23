@@ -2,6 +2,8 @@ package com.jogajunto.modelo;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by lucasn on 14/09/2016.
  */

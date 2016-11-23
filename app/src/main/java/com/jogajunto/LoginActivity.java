@@ -13,11 +13,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jogajunto.modelo.Quadra;
+import com.jogajunto.modelo.Cliente;
 import com.jogajunto.tasks.AutenticarTask;
-import com.jogajunto.tasks.ReceberQuadrasTask;
-
-import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.Bind;
@@ -86,9 +83,10 @@ public class LoginActivity extends AppCompatActivity {
 
                         // On complete call either onLoginSuccess or onLoginFailed
                         AutenticarTask task = new AutenticarTask();
-                        boolean autenticado = task.doInBackground(email, password);
-                        //Log.d("RESULT TASK", String.valueOf(autenticado));
-                        if (autenticado) {
+                        Autenticacao.cliente = task.doInBackground(email, password);
+                        Cliente cliente = Autenticacao.cliente;
+
+                        if (cliente != null) {
                             Autenticacao.autenticado = true;
                             onLoginSuccess();
                         }else{

@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jogajunto.modelo.Cliente;
 import com.jogajunto.modelo.Quadra;
 
 import java.util.ArrayList;
@@ -19,4 +20,5 @@ public class Autenticacao  {
 
     public static boolean autenticado = false;
     public static int idCliente = 0;
+    public static Cliente cliente;
 }

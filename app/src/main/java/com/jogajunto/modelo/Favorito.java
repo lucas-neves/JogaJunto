@@ -31,6 +31,11 @@ public class Favorito {
         this.Quadra = quadra;
     }
 
+    public Favorito(int id_Cliente, int id_Quadra){
+        this.Id_Cliente = id_Cliente;
+        this.Id_Quadra = id_Quadra;
+    }
+
     public Integer getId_Favorito() {
         return Id_Favorito;
     }

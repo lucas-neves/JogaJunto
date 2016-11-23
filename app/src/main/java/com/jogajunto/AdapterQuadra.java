@@ -8,9 +8,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jogajunto.modelo.Endereco;
 import com.jogajunto.modelo.Quadra;
+import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by lucasn on 23/09/2016.
@@ -18,9 +20,10 @@ import java.util.ArrayList;
 public class AdapterQuadra extends BaseAdapter {
 
     private Context context;
-    private ArrayList<Quadra> quadras;
+    List<Quadra> quadras;
+    Endereco endereco;
 
-    public AdapterQuadra(Context context, ArrayList<Quadra> quadras)
+    public AdapterQuadra(Context context, List<Quadra> quadras)
     {
         this.context = context;
         this.quadras = quadras;
@@ -31,8 +34,15 @@ public class AdapterQuadra extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
-        return quadras.get(position);
+    public String[] getItem(int position) {
+        String[] quadra = new String[6];
+        quadra[0] = quadras.get(position).getImage_Path();
+        quadra[1] = quadras.get(position).getDescricao();
+        quadra[2] = quadras.get(position).getEndereco().getLogradouro();
+        quadra[3] = quadras.get(position).getDono().getTelefone();
+        quadra[4] = String.valueOf(quadras.get(position).getValor_Quadra());
+        quadra[5] = quadras.get(position).getOpcionais();
+        return quadra;
     }
 
     @Override
@@ -49,16 +59,15 @@ public class AdapterQuadra extends BaseAdapter {
             ImageView imgQuadra = (ImageView) view.findViewById(R.id.imageView);
             TextView nome = (TextView) view.findViewById(R.id.textViewNome);
             TextView descricao = (TextView) view.findViewById(R.id.textViewDescricao);
-            ImageView iconMap = (ImageView) view.findViewById(R.id.imageMaps);
-            ImageView iconRat = (ImageView) view.findViewById(R.id.imageRating);
 
             Quadra quadra = quadras.get(position);
 
-//            nome.setText(quadra.nome);
-//            descricao.setText(quadra.descricao);
-//            imgQuadra.setImageResource(quadra.icon);
-//            iconMap.setImageResource(quadra.icon1);
-//            iconRat.setImageResource(quadra.icon2);
+            nome.setText(quadra.getDescricao());
+            descricao.setText(quadra.getOpcionais());
+
+            Picasso.with(context)
+                   .load(quadra.getImage_Path())
+                   .into(imgQuadra);
         }
         return view;
     }

@@ -2,7 +2,7 @@ package com.jogajunto;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,18 +15,22 @@ import android.view.MenuItem;
 
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.jogajunto.modelo.Quadra;
-import com.jogajunto.tasks.ReceberQuadrasTask;
 
 import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static List<Quadra> quadras;
+
     ImageButton yes;
     ImageButton no;
     ImageButton info;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +53,20 @@ public class MainActivity extends AppCompatActivity
         final PlayAreaView image = new PlayAreaView(this);
         frame.addView(image);
 
+        TextView username = (TextView) findViewById(R.id.username);
+        username.setText(Autenticacao.cliente.getUsername());
+        TextView email = (TextView) findViewById(R.id.userEmail);
+        email.setText(Autenticacao.cliente.getEmail());
+
         info = (ImageButton) findViewById(R.id.btnInfo);
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent info = new Intent(MainActivity.this, TelaQuadra.class);
+                info.putExtra("Quadra", image.showInformations());
+                startActivity(info);
+            }
+        });
         yes = (ImageButton) findViewById(R.id.btnYes);
         yes.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -119,7 +136,6 @@ public class MainActivity extends AppCompatActivity
 //        Quadra quadra = postagemTask.doInBackground(33);
 
             Intent fav = new Intent(this, Favoritos.class);
-//            fav.putExtra("Quadras", (Parcelable) quadra);
             startActivity(fav);
 
         } else if (id == R.id.nav_slideshow) {

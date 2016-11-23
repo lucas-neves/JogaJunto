@@ -26,7 +26,8 @@
             <ImageView
                 android:layout_width="200sp"
                 android:layout_height="220sp"
-                android:id="@+id/image1"
+                android:scaleType="fitXY"
+                android:id="@+id/fotoQuadra"
                 android:src="@drawable/iconjj"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true" />
@@ -38,42 +39,88 @@
                 android:layout_marginTop="45dp"
                 android:text="Nome da Quadra: "
                 android:textSize="18dp"
-                android:layout_below="@+id/image1"/>
+                android:layout_below="@+id/fotoQuadra"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/nomeQuadra"
+                android:layout_marginTop="45dp"
+                android:textSize="18dp"
+                android:layout_toRightOf="@+id/textoNomeQuadra"
+                android:layout_below="@+id/fotoQuadra"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textoEnderecoQuadra"
-                android:layout_below="@+id/textoNomeQuadra"
                 android:layout_marginTop="20dp"
                 android:text="Endereço da Quadra: "
-                android:textSize="18dp"/>
+                android:textSize="18dp"
+                android:layout_below="@+id/textoNomeQuadra"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/enderecoQuadra"
+                android:layout_marginTop="20dp"
+                android:textSize="18dp"
+                android:layout_toRightOf="@+id/textoEnderecoQuadra"
+                android:layout_below="@+id/textoNomeQuadra"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textoTelefoneQuadra"
-                android:layout_below="@+id/textoEnderecoQuadra"
                 android:layout_marginTop="20dp"
-                android:text="Telefone da Quadra: " />
+                android:textSize="18dp"
+                android:text="Telefone da Quadra: "
+                android:layout_below="@+id/textoEnderecoQuadra" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/telefoneQuadra"
+                android:layout_marginTop="20dp"
+                android:textSize="18dp"
+                android:layout_toRightOf="@+id/textoTelefoneQuadra"
+                android:layout_below="@+id/textoEnderecoQuadra" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textovalorQuadra"
-                android:layout_below="@+id/textoTelefoneQuadra"
                 android:layout_marginTop="20dp"
                 android:text="Valor da Quadra: "
-                android:textSize="18dp" />
+                android:textSize="18dp"
+                android:layout_below="@+id/textoTelefoneQuadra"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textoOpicionais"
-                android:layout_below="@+id/textovalorQuadra"
+                android:id="@+id/valorQuadra"
                 android:layout_marginTop="20dp"
-                android:text="Opicinias: "
-                android:textSize="18dp" />
+                android:textSize="18dp"
+                android:layout_toRightOf="@id/textovalorQuadra"
+                android:layout_below="@+id/textoTelefoneQuadra"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textoOpcionais"
+                android:layout_marginTop="20dp"
+                android:text="Opcionais: "
+                android:textSize="18dp"
+                android:layout_below="@+id/textovalorQuadra"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/opcionais"
+                android:layout_marginTop="20dp"
+                android:textSize="18dp"
+                android:layout_toRightOf="@id/textoOpcionais"
+                android:layout_below="@+id/textovalorQuadra"/>
 
 
             <TextView
@@ -83,7 +130,7 @@
                 android:textSize="18dp"
                 android:layout_marginTop="40dp"
                 android:id="@+id/textoData"
-                android:layout_below="@id/textoOpicionais"
+                android:layout_below="@id/textoOpcionais"
                 />
 
             <Spinner

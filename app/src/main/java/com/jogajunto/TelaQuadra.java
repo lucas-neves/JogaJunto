@@ -2,6 +2,7 @@ package com.jogajunto;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -15,7 +16,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +30,12 @@ public class TelaQuadra extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private MapsFragment mapa = new MapsFragment();
 
-    ImageView image1;
+    ImageView fotoQuadra;
+    TextView nomeQuadra;
+    TextView endereco;
+    TextView telefone;
+    TextView valorQuadra;
+    TextView opcionais;
     Spinner spinnerHorario;
     Spinner spinnerDia;
     Spinner spinnerMes;
@@ -34,15 +43,22 @@ public class TelaQuadra extends AppCompatActivity {
     AlertDialog alerta;
     Button botaoReservar;
 
+    String[] informations;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         if (!Autenticacao.autenticado) {
-            // codigo para chamar a tela de login
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
+            finish();
         }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_quadra);
+
+        Intent i = getIntent();
+        informations = i.getStringArrayExtra("Quadra");
 
         btnMaps = (ImageButton) findViewById(R.id.btnMaps);
         btnMaps.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +70,13 @@ public class TelaQuadra extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
 
 
-        image1 = (ImageView) findViewById(R.id.image1);
+        fotoQuadra = (ImageView) findViewById(R.id.fotoQuadra);
+        nomeQuadra = (TextView) findViewById(R.id.nomeQuadra);
+        endereco = (TextView) findViewById(R.id.enderecoQuadra);
+        telefone = (TextView) findViewById(R.id.telefoneQuadra);
+        valorQuadra = (TextView) findViewById(R.id.valorQuadra);
+        opcionais = (TextView) findViewById(R.id.opcionais);
+
         spinnerHorario = (Spinner)findViewById(R.id.spinnerHorario);
         spinnerDia = (Spinner)findViewById(R.id.spinnerDia);
         spinnerMes = (Spinner)findViewById(R.id.spinnerMes);
@@ -62,13 +84,27 @@ public class TelaQuadra extends AppCompatActivity {
 
         botaoReservar = (Button)findViewById(R.id.botaoReservar);
 
-        image1.setOnClickListener(new View.OnClickListener() {
+        Picasso.with(this)
+               .load(informations[0])
+               .into(fotoQuadra);
+        fotoQuadra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TelaQuadra.this, Pop.class));
-
+                startActivity(new Intent(TelaQuadra.this, Pop.class).putExtra("URL", informations[0]));
             }
         });
+
+        nomeQuadra.setText(informations[1]);
+        nomeQuadra.setTypeface(null, Typeface.BOLD);;
+        endereco.setText(informations[2]);
+        endereco.setTypeface(null, Typeface.BOLD);
+        telefone.setText(informations[3]);
+        telefone.setTypeface(null, Typeface.BOLD);
+        valorQuadra.setText(informations[4]);
+        valorQuadra.setTypeface(null, Typeface.BOLD);
+        opcionais.setText(informations[5]);
+        opcionais.setTypeface(null, Typeface.BOLD);
+
 
         //ArrayList Spinner Horário
 

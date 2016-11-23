@@ -2,11 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
 
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:scaleType="fitXY"
         android:id="@+id/imageView"/>
 
     <LinearLayout
@@ -20,6 +23,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_marginLeft="10dp"
+            android:maxLines="1"
             android:text="Large Text"
             android:id="@+id/textViewNome" />
 
@@ -28,6 +32,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_marginLeft="10dp"
+            android:maxLines="1"
             android:text="Small Text"
             android:id="@+id/textViewDescricao" />
 
@@ -45,6 +50,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:src="@drawable/maps"
                 android:id="@+id/imageMaps"/>
 
             <TextView
@@ -66,6 +72,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:src="@drawable/rating"
                 android:id="@+id/imageRating"/>
 
             <TextView

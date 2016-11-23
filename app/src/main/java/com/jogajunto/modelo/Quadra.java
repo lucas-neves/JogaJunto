@@ -3,6 +3,8 @@ package com.jogajunto.modelo;
 import com.google.gson.annotations.SerializedName;
 import com.jogajunto.R;
 
+import java.util.List;
+
 /**
  * Created by lucasn on 14/09/2016.
  */
@@ -38,6 +40,8 @@ public class Quadra {
     @SerializedName("image_Path")
     private String Image_Path;
 
+    private Dono dono;
+    private Endereco endereco;
 
     public Quadra(){
 
@@ -134,5 +138,21 @@ public class Quadra {
 
     public void setImage_Path(String image_Path) {
         Image_Path = image_Path;
+    }
+
+    public Dono getDono() {
+        return dono;
+    }
+
+    public void setDono(Dono dono) {
+        this.dono = dono;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 }
