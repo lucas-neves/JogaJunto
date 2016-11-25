@@ -22,6 +22,8 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
 
     private LocationManager locationManager;
 
+    private float lat1, lat2;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +66,7 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
 
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-33.87365, 151.2689);
+        LatLng sydney = new LatLng(lat1, lat2);
 
         MarkerOptions mark = new MarkerOptions();
         mark.position(sydney);
@@ -81,4 +83,21 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
         Toast.makeText(getContext(), "Coordenadas" + latLng.toString(),
                 Toast.LENGTH_SHORT).show();
     }
+
+    public float getLat1() {
+        return lat1;
+    }
+
+    public void setLat1(float lat1) {
+        this.lat1 = lat1;
+    }
+
+    public float getLat2() {
+        return lat2;
+    }
+
+    public void setLat2(float lat2) {
+        this.lat2 = lat2;
+    }
+
 }

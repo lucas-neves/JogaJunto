@@ -88,8 +88,9 @@ public class PlayAreaView extends View {
     }
 
     public void likeAction(){
+        Favorito fav = new Favorito(Autenticacao.idCliente, quadras.get(0).getId_Quadra());
         try{
-            new FavoritarQuadraTask(context).execute(new Favorito(Autenticacao.idCliente, quadras.get(0).getId_Quadra()));
+            new FavoritarQuadraTask(context).execute(fav);
             changeImage(screenSize);
             onResetLocation();
         }catch (Exception e){
@@ -183,13 +184,15 @@ public class PlayAreaView extends View {
     }
 
     public String[] showInformations(){
-        String[] quadra = new String[6];
+        String[] quadra = new String[8];
         quadra[0] = quadras.get(0).getImage_Path();
         quadra[1] = quadras.get(0).getDescricao();
         quadra[2] = quadras.get(0).getEndereco().getLogradouro();
         quadra[3] = quadras.get(0).getDono().getTelefone();
         quadra[4] = String.valueOf(quadras.get(0).getValor_Quadra());
         quadra[5] = quadras.get(0).getOpcionais();
+        quadra[6] = quadras.get(0).getCoordenateOne();
+        quadra[7] = quadras.get(0).getCoordenateTwo();
         return quadra;
     }
 

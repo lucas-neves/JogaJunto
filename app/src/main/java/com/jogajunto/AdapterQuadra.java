@@ -35,13 +35,15 @@ public class AdapterQuadra extends BaseAdapter {
 
     @Override
     public String[] getItem(int position) {
-        String[] quadra = new String[6];
+        String[] quadra = new String[8];
         quadra[0] = quadras.get(position).getImage_Path();
         quadra[1] = quadras.get(position).getDescricao();
         quadra[2] = quadras.get(position).getEndereco().getLogradouro();
         quadra[3] = quadras.get(position).getDono().getTelefone();
         quadra[4] = String.valueOf(quadras.get(position).getValor_Quadra());
         quadra[5] = quadras.get(position).getOpcionais();
+        quadra[6] = quadras.get(position).getCoordenateOne();
+        quadra[7] = quadras.get(position).getCoordenateTwo();
         return quadra;
     }
 

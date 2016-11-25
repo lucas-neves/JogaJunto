@@ -3,6 +3,8 @@ package com.jogajunto;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.os.StrictMode;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -31,7 +33,6 @@ public class MainActivity extends AppCompatActivity
     ImageButton no;
     ImageButton info;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,14 +50,20 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //para garantir que a internet será acessada
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         FrameLayout frame = (FrameLayout) findViewById(R.id.graphics_holder);
         final PlayAreaView image = new PlayAreaView(this);
         frame.addView(image);
 
-        TextView username = (TextView) findViewById(R.id.username);
-        username.setText(Autenticacao.cliente.getUsername());
-        TextView email = (TextView) findViewById(R.id.userEmail);
-        email.setText(Autenticacao.cliente.getEmail());
+        View header = LayoutInflater.from(this).inflate(R.layout.nav_header_main, null);
+        navigationView.addHeaderView(header);
+        TextView textViewUser = (TextView) header.findViewById(R.id.username);
+        textViewUser.setText(Autenticacao.cliente.getUsername());
+        TextView textViewEmail = (TextView) header.findViewById(R.id.userEmail);
+        textViewEmail.setText(Autenticacao.cliente.getEmail());
 
         info = (ImageButton) findViewById(R.id.btnInfo);
         info.setOnClickListener(new View.OnClickListener() {

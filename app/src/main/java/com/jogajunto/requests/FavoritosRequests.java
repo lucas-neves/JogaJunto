@@ -4,6 +4,7 @@ import com.jogajunto.modelo.Favorito;
 
 import java.util.List;
 
+import feign.Headers;
 import feign.Param;
 import feign.RequestLine;
 
@@ -12,7 +13,8 @@ import feign.RequestLine;
  */
 public interface FavoritosRequests {
 
-    @RequestLine("POST /Favoritoes")
+    @Headers("Content-Type: application/json")
+    @RequestLine("POST /Favoritoes/like")
     void favoritarQuadra(Favorito favorito);
 
     @RequestLine("GET /Favoritoes")

@@ -83,11 +83,11 @@ public class LoginActivity extends AppCompatActivity {
 
                         // On complete call either onLoginSuccess or onLoginFailed
                         AutenticarTask task = new AutenticarTask();
-                        Autenticacao.cliente = task.doInBackground(email, password);
-                        Cliente cliente = Autenticacao.cliente;
+                        Cliente cliente = task.doInBackground(email, password);
 
                         if (cliente != null) {
                             Autenticacao.autenticado = true;
+                            Autenticacao.cliente = cliente;
                             onLoginSuccess();
                         }else{
                             onLoginFailed();

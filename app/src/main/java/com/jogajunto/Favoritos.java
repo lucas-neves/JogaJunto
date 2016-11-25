@@ -9,15 +9,17 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.jogajunto.tasks.FavoritarQuadraTask;
+import com.jogajunto.modelo.Quadra;
+import com.jogajunto.tasks.ReceberFavoritosTask;
+
+import java.util.List;
 
 public class Favoritos extends AppCompatActivity {
 
     private ListView list;
 
-    FavoritarQuadraTask task = new FavoritarQuadraTask(this);
-//    List<Favorito> favoritos
-
+    ReceberFavoritosTask task = new ReceberFavoritosTask();
+    List<Quadra> favoritos = task.doInBackground();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +28,7 @@ public class Favoritos extends AppCompatActivity {
 
         list = (ListView) findViewById(R.id.List);
 
-        final AdapterQuadra adapterQuadras = new AdapterQuadra(this, MainActivity.quadras);
+        final AdapterQuadra adapterQuadras = new AdapterQuadra(this, favoritos);
         list.setAdapter(adapterQuadras);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener()

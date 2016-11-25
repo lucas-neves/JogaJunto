@@ -155,8 +155,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/spinnerAno"
-                android:layout_marginTop="20sp"
-                android:layout_below="@+id/spinnerDia"></Spinner>
+                android:layout_marginTop="10sp"
+                android:layout_toRightOf="@+id/spinnerMes"
+                android:layout_below="@+id/textoData"></Spinner>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -183,7 +184,6 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginRight="29dp"
                 android:layout_marginEnd="29dp"
-                android:onClick=""
                 android:id="@+id/btnMaps"
                 android:layout_marginTop="15sp"
                 android:layout_toRightOf="@+id/spinnerHorario"

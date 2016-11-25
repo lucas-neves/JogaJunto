@@ -3,6 +3,8 @@ package com.jogajunto;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
+import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -28,7 +30,7 @@ public class TelaQuadra extends AppCompatActivity {
 
     private ImageButton btnMaps;
     private FragmentManager fragmentManager;
-    private MapsFragment mapa = new MapsFragment();
+    private MapsFragment mapa;
 
     ImageView fotoQuadra;
     TextView nomeQuadra;
@@ -57,18 +59,12 @@ public class TelaQuadra extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_quadra);
 
+        //para garantir que a internet será acessada
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        
         Intent i = getIntent();
         informations = i.getStringArrayExtra("Quadra");
-
-        btnMaps = (ImageButton) findViewById(R.id.btnMaps);
-        btnMaps.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showFragment(mapa, "Local da quadra");
-            }
-        });
-        fragmentManager = getSupportFragmentManager();
-
 
         fotoQuadra = (ImageView) findViewById(R.id.fotoQuadra);
         nomeQuadra = (TextView) findViewById(R.id.nomeQuadra);
@@ -83,6 +79,19 @@ public class TelaQuadra extends AppCompatActivity {
         spinnerAno = (Spinner)findViewById(R.id.spinnerAno);
 
         botaoReservar = (Button)findViewById(R.id.botaoReservar);
+        botaoReservar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendEmail();
+//                try {
+//                    GmailSender email = new GmailSender("lucasn580@gmail.com", "lakers325");
+//                    email.sendMail("Reserva efetuada!", "Teste", "lucasn580@gmail.com", "lucas_neves580@hotmail.com");
+//                } catch (Exception e) {
+//                    Log.e("ERRO ENVIO DE E-MAIL: ", e.toString());
+//                }
+
+            }
+        });
 
         Picasso.with(this)
                .load(informations[0])
@@ -100,11 +109,22 @@ public class TelaQuadra extends AppCompatActivity {
         endereco.setTypeface(null, Typeface.BOLD);
         telefone.setText(informations[3]);
         telefone.setTypeface(null, Typeface.BOLD);
-        valorQuadra.setText(informations[4]);
+        valorQuadra.setText("R$ "+informations[4]+"0");
         valorQuadra.setTypeface(null, Typeface.BOLD);
         opcionais.setText(informations[5]);
         opcionais.setTypeface(null, Typeface.BOLD);
 
+        mapa = new MapsFragment();
+        mapa.setLat1(Float.parseFloat(informations[6].replace(",",".")));
+        mapa.setLat2(Float.parseFloat(informations[7].replace(",",".")));
+        btnMaps = (ImageButton) findViewById(R.id.btnMaps);
+        btnMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showFragment(mapa, "Local da quadra");
+            }
+        });
+        fragmentManager = getSupportFragmentManager();
 
         //ArrayList Spinner Horário
 
@@ -195,6 +215,20 @@ public class TelaQuadra extends AppCompatActivity {
         transaction.add(R.id.content_maps, mapa, "MapsFragment");
         transaction.commitAllowingStateLoss();
         btnMaps.setVisibility(View.INVISIBLE);
+    }
+
+    public void sendEmail(){
+        /* Create the Intent */
+        final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+
+        /* Fill it with Data */
+        emailIntent.setType("plain/text");
+        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"lucas_neves580@hotmail.com"});
+        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Reserva Efetuada");
+        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Olá, tudo bem?!");
+
+        /* Send it off to the Activity-Chooser */
+        startActivity(Intent.createChooser(emailIntent, "Enviar e-mail..."));
     }
 
     @Override

@@ -19,11 +19,11 @@ public class Quadra {
     @SerializedName("id_End")
     private Integer Id_End;
 
-    @SerializedName("coordenateOne")
-    private String CoordenateOne;
+    @SerializedName("coordernateOne")
+    private String CoordernateOne;
 
-    @SerializedName("coordenateTwo")
-    private String CoordenateTwo;
+    @SerializedName("coordernateTwo")
+    private String CoordernateTwo;
 
     @SerializedName("opcionais")
     private String Opcionais;
@@ -51,8 +51,8 @@ public class Quadra {
         this.Id_Quadra = id_Quadra;
         this.Id_Dono = id_Dono;
         this.Id_End = id_End;
-        this.CoordenateOne = coordOne;
-        this.CoordenateTwo = coordTwo;
+        this.CoordernateOne = coordOne;
+        this.CoordernateTwo = coordTwo;
         this.Opcionais = opcionais;
         this.Tipo_Quadra = tipoQuadra;
         this.Valor_Quadra = valor_Quadra;
@@ -101,19 +101,19 @@ public class Quadra {
     }
 
     public String getCoordenateTwo() {
-        return CoordenateTwo;
+        return CoordernateTwo;
     }
 
     public void setCoordenateTwo(String coordenateTwo) {
-        CoordenateTwo = coordenateTwo;
+        CoordernateTwo = coordenateTwo;
     }
 
     public String getCoordenateOne() {
-        return CoordenateOne;
+        return CoordernateOne;
     }
 
     public void setCoordenateOne(String coordenateOne) {
-        CoordenateOne = coordenateOne;
+        CoordernateOne = coordenateOne;
     }
 
     public float getValor_Quadra() {
