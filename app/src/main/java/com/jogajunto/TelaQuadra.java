@@ -21,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jogajunto.tasks.BackgroundMail;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -82,14 +83,18 @@ public class TelaQuadra extends AppCompatActivity {
         botaoReservar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendEmail();
-//                try {
-//                    GmailSender email = new GmailSender("lucasn580@gmail.com", "lakers325");
-//                    email.sendMail("Reserva efetuada!", "Teste", "lucasn580@gmail.com", "lucas_neves580@hotmail.com");
-//                } catch (Exception e) {
-//                    Log.e("ERRO ENVIO DE E-MAIL: ", e.toString());
-//                }
-
+                BackgroundMail sendMailTask = new BackgroundMail(TelaQuadra.this);
+                sendMailTask.setGmailUserName("equipejogajunto@gmail.com");
+                sendMailTask.setGmailPassword("Jog@junto123");
+                sendMailTask.setMailTo("lucas_neves580@hotmail.com");
+                sendMailTask.setFormSubject("Reserva efetuada!");
+                sendMailTask.setFormBody("Seu jogo está marcado!\n\n" +
+                        "Local: "+informations[2]+"\n" +
+                        "Data: "+informations[2]+"\n\n" +
+                        "Para cancelar, ligue para "+informations[3]+" em até 1 semana antes do jogo. Sujeito a multa!\n\n");
+                sendMailTask.setSendingMessage("Checando disponibilidade...");
+                sendMailTask.setSendingMessageSuccess("Reserva efetuada com sucesso!");
+                sendMailTask.send();
             }
         });
 
