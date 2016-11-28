@@ -2,6 +2,7 @@ package com.jogajunto.requests;
 
 import com.jogajunto.modelo.Cliente;
 
+import feign.Headers;
 import feign.Param;
 import feign.RequestLine;
 import feign.Body;
@@ -18,4 +19,8 @@ public interface AutenticacaoRequests {
     @RequestLine("POST Autenticar/user/")
     @Body("email={email}")
     void usuarioExiste(@Param("email") String email);
+
+    @Headers("Content-Type: application/json")
+    @RequestLine("POST Autenticar/cadastro/")
+    void cadastrar(Cliente cliente);
 }

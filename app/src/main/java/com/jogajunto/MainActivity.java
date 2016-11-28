@@ -132,30 +132,29 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_slideshow) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-
-//            ReceberQuadrasTask quadrasTask = new ReceberQuadrasTask();
-//            List<Quadra> quadra = quadrasTask.doInBackground(null);
-//
-//        ReceberPostagemTask postagemTask = new ReceberPostagemTask();
-//        Quadra quadra = postagemTask.doInBackground(33);
 
             Intent fav = new Intent(this, Favoritos.class);
             startActivity(fav);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_camera) {
 
         } else if (id == R.id.nav_manage) {
+
             //Tela configurações
 
             Intent filtro = new Intent(this, TelaFiltro.class);
             startActivity(filtro);
-        } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 
+        } else if (id == R.id.sair) {
+            Autenticacao.autenticado = false;
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

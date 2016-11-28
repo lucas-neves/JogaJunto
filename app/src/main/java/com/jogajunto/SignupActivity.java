@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jogajunto.modelo.Cliente;
+import com.jogajunto.tasks.CadastroClienteTask;
 import com.jogajunto.tasks.NovoUsuarioTask;
 
 import butterknife.ButterKnife;
@@ -61,12 +63,12 @@ public class SignupActivity extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this,
                 R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Creating Account...");
+        progressDialog.setMessage("Criando conta...");
         progressDialog.show();
 
-        String name = _nameText.getText().toString();
+        final String name = _nameText.getText().toString();
         final String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
+        final String password = _passwordText.getText().toString();
 
         // TODO: Implement your own signup logic here.
 
@@ -79,12 +81,19 @@ public class SignupActivity extends AppCompatActivity {
                         boolean usuarioExiste = task.doInBackground(email);
 
                         if (!usuarioExiste) {
-                            onSignupSuccess();
-                        }else{
-                            onSignupFailed();
-                            //Toast.makeText(getBaseContext(), "E-mail já cadastrado!", Toast.LENGTH_LONG).show();
-                        }
 
+                            CadastroClienteTask taskCad = new CadastroClienteTask(getBaseContext());
+                            boolean cadastrou = taskCad.doInBackground(new Cliente(name, password, email));
+
+                            if(cadastrou){
+                                onSignupSuccess();
+                            }else{
+                                onSignupFailed();
+                            }
+
+                        }else{
+                            Toast.makeText(getBaseContext(), "E-mail já cadastrado!", Toast.LENGTH_LONG).show();
+                        }
                         progressDialog.dismiss();
                     }
                 }, 3000);
@@ -101,7 +110,6 @@ public class SignupActivity extends AppCompatActivity {
 
     public void onSignupFailed() {
         Toast.makeText(getBaseContext(), "Criação de conta falhou", Toast.LENGTH_LONG).show();
-
         _signupButton.setEnabled(true);
     }
 
@@ -113,7 +121,7 @@ public class SignupActivity extends AppCompatActivity {
         String password = _passwordText.getText().toString();
 
         if (name.isEmpty() || name.length() < 2) {
-            _nameText.setError("O nome precisa ter mais de duas letras!");
+            _nameText.setError("O nome precisa conter mais de duas letras!");
             valid = false;
         } else {
             _nameText.setError(null);
@@ -127,7 +135,7 @@ public class SignupActivity extends AppCompatActivity {
         }
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            _passwordText.setError("Senha entra 4 a 10 caracteres");
+            _passwordText.setError("Senha entre 4 e 10 caracteres!");
             valid = false;
         } else {
             _passwordText.setError(null);

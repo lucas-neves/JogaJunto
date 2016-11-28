@@ -42,6 +42,11 @@ public class Cliente {
         this.Telefone = telefone;
     }
 
+    public Cliente(String username, String senha, String email){
+        this.Username = username;
+        this.Senha = senha;
+        this.Email = email;
+    }
 
     public Integer getId_Cliente() {
         return Id_Cliente;

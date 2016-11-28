@@ -8,10 +8,10 @@
 
     <string name="partidas">Partidas</string>
     <string name="favoritos">Favoritos</string>
-    <string name="galeria">Fotografar/Galeria</string>
+    <string name="galeria">Galeria</string>
     <string name="configuracao">Configuração</string>
-    <string name="compartilhar">Compartilhar</string>
-    <string name="enviar">Enviar</string>
+    <string name="avaliar">Avaliar</string>
+    <string name="sair">Sair</string>
 
     <string name="action_settings">Configurações</string>
     <string name="section_format">Hello World from section: %1$d</string>

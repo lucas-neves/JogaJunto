@@ -83,18 +83,7 @@ public class TelaQuadra extends AppCompatActivity {
         botaoReservar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BackgroundMail sendMailTask = new BackgroundMail(TelaQuadra.this);
-                sendMailTask.setGmailUserName("equipejogajunto@gmail.com");
-                sendMailTask.setGmailPassword("Jog@junto123");
-                sendMailTask.setMailTo("lucas_neves580@hotmail.com");
-                sendMailTask.setFormSubject("Reserva efetuada!");
-                sendMailTask.setFormBody("Seu jogo está marcado!\n\n" +
-                        "Local: "+informations[2]+"\n" +
-                        "Data: "+informations[2]+"\n\n" +
-                        "Para cancelar, ligue para "+informations[3]+" em até 1 semana antes do jogo. Sujeito a multa!\n\n");
-                sendMailTask.setSendingMessage("Checando disponibilidade...");
-                sendMailTask.setSendingMessageSuccess("Reserva efetuada com sucesso!");
-                sendMailTask.send();
+                alertaReserva(view);
             }
         });
 
@@ -222,18 +211,20 @@ public class TelaQuadra extends AppCompatActivity {
         btnMaps.setVisibility(View.INVISIBLE);
     }
 
-    public void sendEmail(){
-        /* Create the Intent */
-        final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
-
-        /* Fill it with Data */
-        emailIntent.setType("plain/text");
-        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"lucas_neves580@hotmail.com"});
-        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Reserva Efetuada");
-        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Olá, tudo bem?!");
-
-        /* Send it off to the Activity-Chooser */
-        startActivity(Intent.createChooser(emailIntent, "Enviar e-mail..."));
+    public void sendEmail(String dia, String mes, String ano, String horario){
+        BackgroundMail sendMailTask = new BackgroundMail(TelaQuadra.this);
+        sendMailTask.setGmailUserName("equipejogajunto@gmail.com");
+        sendMailTask.setGmailPassword("Jog@junto123");
+        sendMailTask.setMailTo("lucas_neves580@hotmail.com");
+        sendMailTask.setFormSubject("Reserva efetuada!");
+        sendMailTask.setFormBody("Seu jogo está marcado!\n\n" +
+                "Local: "+informations[2]+"\n" +
+                "Data: "+dia+"/"+mes+"/"+ano+" às "+horario+"\n\n" +
+                "Para cancelar, ligue para (11)"+informations[3].replace(" ","")+" em até " +
+                "1 semana antes do jogo. Sujeito a multa!\n\n");
+        sendMailTask.setSendingMessage("Checando disponibilidade...");
+        sendMailTask.setSendingMessageSuccess("Reserva efetuada com sucesso!");
+        sendMailTask.send();
     }
 
     @Override
@@ -251,149 +242,58 @@ public class TelaQuadra extends AppCompatActivity {
     }
 
     public void alertaReserva(View v) {
-        //Cria o gerador do AlertDialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         //Validação Mês Fevereiro
 
-        if (spinnerMes.getSelectedItem() == "Fevereiro") {
+        String dia = spinnerDia.getSelectedItem().toString();
+        String mes = spinnerMes.getSelectedItem().toString();
+        String ano = spinnerAno.getSelectedItem().toString();
+        String horario = spinnerHorario.getSelectedItem().toString();
+
+        if (mes == "Fevereiro") {
             if (Integer.parseInt(spinnerDia.getSelectedItem().toString()) > 28) {
-                builder.setMessage("Fevereiro tem somente 28 dias!");
-
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        Toast.makeText(TelaQuadra.this, "Selecione um Dia Válido, Por Favor!", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                //cria o AlertDialog
-                alerta = builder.create();
-                //Exibe
-                alerta.show();
-
+                Toast.makeText(TelaQuadra.this, "Fevereiro tem somente 28 dias, Hehe!", Toast.LENGTH_SHORT).show();
                 return;
             }
         }
 
         //Validação Mês com até 30 dias
 
-        if (spinnerMes.getSelectedItem() == "Abril" ||
-                spinnerMes.getSelectedItem() == "Junho" ||
-                spinnerMes.getSelectedItem() == "Setembro" ||
-                spinnerMes.getSelectedItem() == "Novembro") {
-
+        if (mes == "Abril" || mes == "Junho" || mes == "Setembro" || mes == "Novembro") {
             if (Integer.parseInt(spinnerDia.getSelectedItem().toString()) > 30) {
-                builder.setMessage("Este Mês tem somente 30 dias!");
-
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        Toast.makeText(TelaQuadra.this, "Selecione um Mês Válido, Por Favor!", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                //cria o AlertDialog
-                alerta = builder.create();
-                //Exibe
-                alerta.show();
-
+                Toast.makeText(TelaQuadra.this, "Este Mês tem somente 30 dias, Hehe!", Toast.LENGTH_SHORT).show();
                 return;
             }
         }
 
         //Validação Dia vazio
 
-        if (spinnerDia.getSelectedItem() == "Dia") {
-            builder.setMessage("Você não selecionou nenhum dia!");
-
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface arg0, int arg1) {
-                    Toast.makeText(TelaQuadra.this, "Selecione um Dia, Por Favor!", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            //cria o AlertDialog
-            alerta = builder.create();
-            //Exibe
-            alerta.show();
-
+        if (dia == "Dia") {
+            Toast.makeText(TelaQuadra.this, "Selecione um Dia, Por Favor!", Toast.LENGTH_SHORT).show();
             return;
-
         }
 
         //Validação Mês vazio
 
-        if (spinnerMes.getSelectedItem() == "Mês") {
-            builder.setMessage("Você não selecionou nenhum mês!");
-
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface arg0, int arg1) {
-                    Toast.makeText(TelaQuadra.this, "Selecione um Mês, Por Favor!", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            //cria o AlertDialog
-            alerta = builder.create();
-            //Exibe
-            alerta.show();
-
+        if (mes == "Mês") {
+            Toast.makeText(TelaQuadra.this, "Selecione um Mês, Por Favor!", Toast.LENGTH_SHORT).show();
             return;
         }
+
         //Validação Ano vazio
 
-        if (spinnerAno.getSelectedItem() == "Ano") {
-            builder.setMessage("Você não selecionou nenhum ano!");
-
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface arg0, int arg1) {
-                    Toast.makeText(TelaQuadra.this, "Selecione um Ano, Por Favor!", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            //cria o AlertDialog
-            alerta = builder.create();
-            //Exibe
-            alerta.show();
-
+        if (ano == "Ano") {
+            Toast.makeText(TelaQuadra.this, "Selecione um Ano, Por Favor!", Toast.LENGTH_SHORT).show();
             return;
         }
+
         //Validação de horário vazio
 
-        if (spinnerHorario.getSelectedItem() == "Selecione um horário") {
-            builder.setMessage("Você não selecionou nenhum horário!");
-
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface arg0, int arg1) {
-                    Toast.makeText(TelaQuadra.this, "Selecione um horário, Por Favor!", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            //cria o AlertDialog
-            alerta = builder.create();
-            //Exibe
-            alerta.show();
-
+        if (horario == "Selecione um horário") {
+            Toast.makeText(TelaQuadra.this, "Selecione um horário, Por Favor!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-
-        //define o titulo
-        builder.setTitle("Confirmado!");
-
-
-        //define a mensagem
-        builder.setMessage("Sua reserva do dia " + spinnerDia.getSelectedItem() + " de " + spinnerMes.getSelectedItem() + " de " + spinnerAno.getSelectedItem() + " às " + spinnerHorario.getSelectedItem() + "hs. Está Confirmada!");
-
-
-        //define um botão como positivo
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface arg0, int arg1) {
-                Toast.makeText(TelaQuadra.this, "Obrigado!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        //cria o AlertDialog
-        alerta = builder.create();
-        //Exibe
-        alerta.show();
+        sendEmail(dia, mes, ano, horario);
     }
 }
